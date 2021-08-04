@@ -22,7 +22,7 @@ def _rect (x): return x*(x>0.)
 def _Iext (Ipre,numcells):
 	taufilt = 20 # [ms] filtering time constant
 	Iext = Ipre - (Ipre-_rect((np.random.normal(0,1.8,numcells))**3.))*p.dt/taufilt
-	Iext[-1] = Ipre[-1] - (Ipre[-1]-(9+_rect((np.random.normal(0,0.0001,1)))))*p.dt/taufilt    # changed 1 to p.LE
+	Iext[-1] = Ipre[-1] - (Ipre[-1]-(9+_rect((np.random.normal(0,0.0001,1)))))*p.dt/taufilt
 	return Iext
 
 def SimStep (u,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,s):
@@ -107,7 +107,7 @@ def SimStep (u,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,
     # TODO figure out what makes sense for the Layer 2 cells (suggestion is added in comment after xbar_post)
 	xbar_pre_out = xbar_pre + (10.-xbar_pre)*spikes
 	xbar_pre_out = _rect(xbar_pre_out - p.dt)
-	xbar_post_out = xbar_post # + (10.-xbar_post)*spikes2
+	xbar_post_out = xbar_post + (10.-xbar_post)*spikes2
 	
 	# Update the synaptic weights from Layer 4 to Layer 2/3
 	auxMat = np.ones((p.LE,p.NE))    # changed 1 to p.LE

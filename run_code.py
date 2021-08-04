@@ -37,7 +37,7 @@ time_in = time_now()
 def run_trial(tr):
 	subprocess.call('python UP-state-mediated_plast_fig4E.py {0}'.format(tr),shell=True)
 
-NTrials = 50
+NTrials = 200
 quant_proc = np.max((mp.cpu_count()-1,1))
 pool = mp.Pool(processes=quant_proc)
 
