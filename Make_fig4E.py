@@ -72,8 +72,8 @@ Wend = np.array([])
 
 for i in range(len(fnames)):
 	data = np.load(Dir+fnames[i])
-	W0 = np.append(W0,data[0,0])
-	Wend = np.append(Wend,data[1,0])
+	W0 = np.append(W0,data[0,:,0])
+	Wend = np.append(Wend,data[1,:,0])
 
 n_trials = len(fnames)
 
