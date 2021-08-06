@@ -132,7 +132,7 @@ plt.ylabel("Presynaptic cell (Layer 4)")
 time_end = time_now()
 time_total = time_end - time_in
 
-np.save('Data/Wall_{0:03d}'.format(trial),WEE_all[[0,-1]])
+np.save('Data/Wall_{0:03d}'.format(trial),WEE_all[[0,-1]]) # not sure which of the WEE_all data to save...
 
 print('')
 print('Trial = {1:3d} \n Total time = {0:.3f} seconds'.format(time_total,trial))
