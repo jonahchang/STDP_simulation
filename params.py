@@ -24,7 +24,7 @@ Tref = 3. 					# [ms] Refractory time
 NE = 100	                   	# Number of excitatory neurons in the input layer
 LE = 100                    # Number of excitatory neurons in the output layer
 # Simulation parameters -----------------------------------------------------------------------------
-t_max = 50000 		        	    # [ms] Total time of simulation
+t_max = 1000	        	    # [ms] Total time of simulation
 dt = 1. 		                  # [ms] Simulation time step
 nSteps = np.int(t_max/dt)       # Number of steps in simulation
 

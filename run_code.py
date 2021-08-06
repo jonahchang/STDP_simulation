@@ -35,7 +35,7 @@ time_in = time_now()
 
 # Run the main code for homogeneous stimulation ------------------------------------------------------
 def run_trial(tr):
-	subprocess.call('python UP-state-mediated_plast_fig4E.py {0}'.format(tr),shell=True)
+	subprocess.call('python UP_state_mediated_plast_fig4E.py {0}'.format(tr),shell=True)
 
 NTrials = 200
 quant_proc = np.max((mp.cpu_count()-1,1))

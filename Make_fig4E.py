@@ -15,7 +15,7 @@ import numpy as np
 from matplotlib.gridspec import GridSpec
 from matplotlib.pyplot import cm
 import matplotlib as mpl
-
+import UP_state_mediated_plast_fig4E as UP
 
 mpl.rcParams['axes.linewidth'] = 2
 mpl.rcParams['xtick.major.width'] = 2
@@ -72,8 +72,8 @@ Wend = np.array([])
 
 for i in range(len(fnames)):
 	data = np.load(Dir+fnames[i])
-	W0 = np.append(W0,data[0,:,0])
-	Wend = np.append(Wend,data[1,:,0])
+	W0 = np.append(W0,data[0,:,0]) # added this middle index to capture all Layer 2 activity, not sure if that's the right strategy here tho
+	Wend = np.append(Wend,data[1,:,0]) # added this middle index to capture all Layer 2 activity, not sure if that's the right strategy here tho
 
 n_trials = len(fnames)
 
@@ -89,3 +89,17 @@ plt.fill_between(W0_mean,Wend_mean-Wend_std,Wend_mean+Wend_std,alpha=.3,color=co
 # ----------------------------------------------------------------------------------------------------------------
 # Choose the directory and save the figures
 plt.savefig('Figures/fig4E.png',dpi=400)
+
+#%%
+# ----------------------------------------------------------------------------------------------------------------
+# making the histogram
+
+fig, ax = plt.subplots(figsize =(10, 7))
+ax.hist(UP.WEE.reshape(100 * 100, 1), bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], rwidth = 0.8)
+plt.ylim(1105, 1120)
+plt.xlabel('initial weight', fontsize = '20')
+plt.ylabel('synaptic weight', fontsize = '20')
+# Show plot
+plt.show()
+
+

@@ -70,8 +70,8 @@ def SimStep (u,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,
     ## CURRENTS
 	
 	Isyn = -(vlayer2[:] - p.EsynE)*np.dot(WEE,gSynE) # Postsynaptic currents in Layer 2
-	Iext = _Iext(Iext,p.NE) # Layer 4 external currents
-	Iext2 = _Iext(Iext2,p.LE) # Layer 2 external currents
+	# Iext = _Iext(Iext,p.NE) # Layer 4 external currents
+	# Iext2 = _Iext(Iext2,p.LE) # Layer 2 external currents
 
     ## MEMBRANE POTENTIAL	
 
@@ -123,4 +123,4 @@ def SimStep (u,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,
 	
 	WEE_out = _rect(WEE_out) - _rect(WEE_out-p.w_max) # apply bounds
 		
-	return u_out,ref_out,ref2_out,xbar_pre_out,xbar_post_out,gSynE_out,gSynE2_out,WEE_out,Iext,vlayer2_out,Iext2
+	return u_out,ref_out,ref2_out,xbar_pre_out,xbar_post_out,gSynE_out,gSynE2_out,WEE_out,Iext,vlayer2_out,Iext2, spikes, spikes2
