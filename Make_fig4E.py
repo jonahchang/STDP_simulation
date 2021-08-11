@@ -96,10 +96,12 @@ plt.savefig('Figures/fig4E.png',dpi=400)
 
 fig, ax = plt.subplots(figsize =(10, 7))
 ax.hist(UP.WEE.reshape(100 * 100, 1), bins = [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1], rwidth = 0.8)
-plt.ylim(1105, 10000)
+plt.ylim(0, 150)
+plt.xlim(0.1, 1)
 plt.xlabel('initial weight', fontsize = '20')
 plt.ylabel('synaptic weight', fontsize = '20')
 # Show plot
 plt.show()
+# 90% of weight changes are 0, other 10% are not
 
 

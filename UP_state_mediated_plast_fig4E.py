@@ -41,6 +41,7 @@ except IndexError:
 from imp import reload
 import params; reload(params); import params as p
 import SimStep; reload(SimStep); import SimStep as SS
+import alt_approach_network; reload(alt_approach_network); import alt_approach_network as aan
 
 time_in = time_now()
 
@@ -56,7 +57,10 @@ WEE[:] = np.linspace(0.1,1.0,p.LE*p.NE).reshape(p.LE,p.NE)
 WEE += np.random.normal(0,0.000001,(p.LE,p.NE))
 WEE = SS._rect(WEE) - SS._rect(WEE-p.w_max)
 
+
 import alt_approach_network as alt
+
+
 
 WSNET = alt.create_WS_network(100, 10, 0.1)
 
