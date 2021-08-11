@@ -61,10 +61,7 @@ import alt_approach_network as alt
 WSNET = alt.create_WS_network(100, 10, 0.1)
 
 def zero_out(w):
-    for i in range(100):
-        for j in range (100):
-            if WSNET[i, j] == 0:
-                w[i, j] = 0
+    return w * WSNET
                 
 WEE = zero_out(WEE)
 # Other variables ----------------------------------------------------------------
@@ -106,8 +103,8 @@ spks_2 = [[] for i in range(100)]
 
 for step in range(p.nSteps):
     WEE_in = WEE
-    Iext2 = 0 * math.sin(2 * math.pi * (4 * step * p.dt / 1000 + 0)) * 1
-    Iext = 12 * math.sin(2 * math.pi * (4 * step * p.dt / 1000 + 0)) * 1
+    Iext2 = 0 * np.sin(2 * math.pi * (4 * step * p.dt / 1000 + 0)) * 1
+    Iext = 12 * np.sin(2 * math.pi * (4 * step * p.dt / 1000 + 0)) * 1
     Vmemb,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext, vlayer2, Iext2, spikes1, spikes2 \
     = SS.SimStep (Vmemb,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,"up")
     

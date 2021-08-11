@@ -22,7 +22,7 @@ def _rect (x): return x*(x>0.)
 def _Iext (Ipre,numcells):
 	taufilt = 20 # [ms] filtering time constant
 	Iext = Ipre - (Ipre-_rect((np.random.normal(0,1.8,numcells))**3.))*p.dt/taufilt
-	Iext[-1] = Ipre[-1] - (Ipre[-1]-(9+_rect((np.random.normal(0,0.0001,1)))))*p.dt/taufilt
+	Iext = Ipre - (Ipre-(9+_rect((np.random.normal(0,0.0001,1)))))*p.dt/taufilt
 	return Iext
 
 def SimStep (u,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,s):

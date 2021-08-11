@@ -49,7 +49,7 @@ total_time = (time_end-time_in)/60. # [min]
 
 print('\n')
 print('Simulation finally finished!')
-print('Total time = {0:.2f} minutos'.format(total_time))
+print('Total time = {0:.2f} minutes'.format(total_time))
 
 
 # Run the code to generate the figures ---------------------------------------------------------------
