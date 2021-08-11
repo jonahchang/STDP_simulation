@@ -73,23 +73,45 @@ Wend = np.array([])
 
 for i in range(len(fnames)):
 	data = np.load(Dir+fnames[i])
-	W0 = np.append(W0,data[0,:,0]) # added this middle index to capture all Layer 2 activity, not sure if that's the right strategy here tho
-	Wend = np.append(Wend,data[1,:,0]) # added this middle index to capture all Layer 2 activity, not sure if that's the right strategy here tho
+	W0 = np.append(W0,data[0]) # added this middle index to capture all Layer 2 activity, not sure if that's the right strategy here tho
+	Wend = np.append(Wend,data[1]) # added this middle index to capture all Layer 2 activity, not sure if that's the right strategy here tho
 
 n_trials = len(fnames)
+#%%
 
-W0_mean = np.mean(np.reshape(W0,(n_trials,100)),axis=0)
-Wend_mean = np.mean(np.reshape((Wend-W0),(n_trials,100)),axis=0)
-#Wend_mean = np.mean(np.reshape((Wend-W0)/W0,(n_trials,100)),axis=0)
+if not UP.alt_approach:
 
-Wend_std = np.std(np.reshape((Wend-W0),(n_trials,100)),axis=0)
-#Wend_std = np.std(np.reshape((Wend-W0)/W0,(n_trials,100)),axis=0)
-
-# we need four different graphs of this, one for each quadrant of the W matrices
-for row_start in [0, 50]:
-    plt.plot(W0_mean[row_start:(row_start+50)],Wend_mean[row_start:(row_start+50)],color=color0,lw=1.5)
-    plt.fill_between(W0_mean[row_start:(row_start+50)],Wend_mean[row_start:(row_start+50)]-Wend_std[row_start:(row_start+50)],Wend_mean[row_start:(row_start+50)]+Wend_std[row_start:(row_start+50)],alpha=.3,color=color0)
+    # If NOT using the alt approach, run this code
+    # reshape num trials, p.LE (Layer 2), p.NE (Layer 4) to compute stats
+    # and then reshape final output so that it is a vector
+    W0_mean = np.mean(np.reshape(W0,(n_trials,100,100)),axis=0).reshape(100*100,)
+    Wend_mean = np.mean(np.reshape((Wend-W0),(n_trials,100,100)),axis=0).reshape(100*100,)
+    #Wend_mean = np.mean(np.reshape((Wend-W0)/W0,(n_trials,100,100)),axis=0).reshape(100*100,)
+    
+    Wend_std = np.std(np.reshape((Wend-W0),(n_trials,100,100)),axis=0).reshape(100*100,)
+    #Wend_std = np.std(np.reshape((Wend-W0)/W0,(n_trials,100,100)),axis=0).reshape(100*100,)
+    
+    plt.plot(W0_mean,Wend_mean,color=color0,lw=1.5)
+    plt.fill_between(W0_mean,Wend_mean-Wend_std,Wend_mean+Wend_std,alpha=.3,color=color0)
     plt.show()
+    
+
+else: # If using alt approach, run this code
+    # reshape num trials, p.LE (Layer 2), p.NE (Layer 4) to compute stats
+    # and then reshape final output so that it is a vector
+    W0_mean = np.mean(np.reshape(W0,(n_trials,100,100)),axis=0)
+    Wend_mean = np.mean(np.reshape((Wend-W0),(n_trials,100,100)),axis=0)
+    
+    Wend_std = np.std(np.reshape((Wend-W0),(n_trials,100,100)),axis=0)
+    
+    title_list = ['L4->L4','L2->L2','L4->L4','L2->L2']
+    # we need four different graphs of this, one for each quadrant of the W matrices
+    for row_start in [0, 50]:
+        for col_start in [0, 50]:
+            plt.plot(W0_mean[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,),Wend_mean[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,),color=color0,lw=1.5)
+            plt.fill_between(W0_mean[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,),Wend_mean[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,)-Wend_std[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,),Wend_mean[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,)+Wend_std[row_start:(row_start+50),col_start:(col_start+50)].reshape(50*50,),alpha=.3,color=color0)
+            plt.title(title_list[row_start//50 + (col_start//50)*2])
+            plt.show()
 
 
 # ----------------------------------------------------------------------------------------------------------------
