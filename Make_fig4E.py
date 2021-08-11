@@ -64,7 +64,8 @@ ax1 = plt.subplot(gs1[0, 0])
 hide_frame(ax1)
 
 plt.xlabel(r'Initial weight, $w_0$',fontsize='20',fontweight=900)
-plt.ylabel(r'Rel. weight change, $\Delta w/w_0$', fontsize='19')
+plt.ylabel(r'Rel. weight change, $\Delta w$', fontsize='19')
+#plt.ylabel(r'Rel. weight change, $\Delta w/w_0$', fontsize='19')
 plt.xlim((0,1.05))
 
 W0 = np.array([])
@@ -78,12 +79,17 @@ for i in range(len(fnames)):
 n_trials = len(fnames)
 
 W0_mean = np.mean(np.reshape(W0,(n_trials,100)),axis=0)
-Wend_mean = np.mean(np.reshape((Wend-W0)/W0,(n_trials,100)),axis=0)
+Wend_mean = np.mean(np.reshape((Wend-W0),(n_trials,100)),axis=0)
+#Wend_mean = np.mean(np.reshape((Wend-W0)/W0,(n_trials,100)),axis=0)
 
-Wend_std = np.std(np.reshape((Wend-W0)/W0,(n_trials,100)),axis=0)
+Wend_std = np.std(np.reshape((Wend-W0),(n_trials,100)),axis=0)
+#Wend_std = np.std(np.reshape((Wend-W0)/W0,(n_trials,100)),axis=0)
 
-plt.plot(W0_mean,Wend_mean,color=color0,lw=1.5)
-plt.fill_between(W0_mean,Wend_mean-Wend_std,Wend_mean+Wend_std,alpha=.3,color=color0)
+# we need four different graphs of this, one for each quadrant of the W matrices
+for row_start in [0, 50]:
+    plt.plot(W0_mean[row_start:(row_start+50)],Wend_mean[row_start:(row_start+50)],color=color0,lw=1.5)
+    plt.fill_between(W0_mean[row_start:(row_start+50)],Wend_mean[row_start:(row_start+50)]-Wend_std[row_start:(row_start+50)],Wend_mean[row_start:(row_start+50)]+Wend_std[row_start:(row_start+50)],alpha=.3,color=color0)
+    plt.show()
 
 
 # ----------------------------------------------------------------------------------------------------------------

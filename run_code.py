@@ -53,5 +53,5 @@ print('Total time = {0:.2f} minutes'.format(total_time))
 
 
 # Run the code to generate the figures ---------------------------------------------------------------
-
-subprocess.call('python Make_fig4E.py',shell=True)
+import Make_fig4E
+# subprocess.call('python Make_fig4E.py',shell=True)
