@@ -45,8 +45,8 @@ import SimStep; reload(SimStep); import SimStep as SS
 
 alt_approach = True
 
-if alt_approach:
-    import alt_approach_network; reload(alt_approach_network); import alt_approach_network as aan
+# if alt_approach:
+#    import alt_approach_network; reload(alt_approach_network); import alt_approach_network as aan
 
 time_in = time_now()
 
@@ -107,13 +107,15 @@ WEE_var = 1.*WEE
 spks_1 = [[] for  i in range(100)]
 spks_2 = [[] for i in range(100)]
 
+empty = []
+
 for step in range(p.nSteps):
     WEE_in = WEE
     Iext2 = 0 * np.sin(2 * math.pi * (4 * step * p.dt / 1000 + 0)) * 1
     Iext = 12 * np.sin(2 * math.pi * (4 * step * p.dt / 1000 + 0)) * 1
     Vmemb,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext, vlayer2, Iext2, spikes1, spikes2 \
     = SS.SimStep (Vmemb,ref,ref2,xbar_pre,xbar_post,gSynE,gSynE2,WEE,Iext,vlayer2, Iext2,"up")
-    
+    vlayer2_out = vlayer2
     WEE_diff = WEE - WEE_in
     WEE_var = WEE_var + WEE_diff
     WEE = WEE_in
@@ -129,6 +131,7 @@ for step in range(p.nSteps):
         if spikes2[num]:
             spks_2[num].append(step)
 
+    empty.append(vlayer2_out[50])
     
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

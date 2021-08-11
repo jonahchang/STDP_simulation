@@ -104,7 +104,7 @@ else: # If using alt approach, run this code
     
     Wend_std = np.std(np.reshape((Wend-W0),(n_trials,100,100)),axis=0)
     
-    title_list = ['L4->L4','L2->L2','L4->L4','L2->L2']
+    title_list = ['L4->L4','L2->L4','L4->L2','L2->L2']
     # we need four different graphs of this, one for each quadrant of the W matrices
     for row_start in [0, 50]:
         for col_start in [0, 50]:
