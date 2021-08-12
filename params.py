@@ -11,6 +11,8 @@ import numpy as np
 # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 # Define the parameters -----------------------------------------------------------------------------
 
+sinwave=0
+
 # Neuron model parameters  (integrate and fire) -----------------------------------------------------
 tau_m = 10. 		      		# [ms] Time constant for the leaky integrator
 R = 1. 						# [Ohm] Resistance of the leaky I-F model for excitatory neurons
@@ -59,7 +61,7 @@ w_max = 5. 					# upper bound on exc weights
 # Synaptic conductance
 tauSynEx = 10.				# [ms] Time constant for excitatory postsynaptic potential
 tauSynIn = 10.				# [ms] Time constant for inhibitory postsynaptic potential
-gBarEx = .5 				# Peak synaptic conductance for excitatory synapses
+gBarEx = .4 				# Peak synaptic conductance for excitatory synapses
 
 # Synaptic weights (constants) ------------------------------------------------------------------------
 
