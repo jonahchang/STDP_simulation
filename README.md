@@ -41,11 +41,5 @@ You can customize the simulation parameters by editing the `config.json` file.
 - `config.json`: Configuration file for setting simulation parameters.
 - `README.md`: Project documentation.
 
-## Contributions
-Contributions to the project are welcome. Please fork the repository and submit a pull request with your changes. Ensure that your code adheres to the project's coding standards and includes appropriate tests.
-
-## License
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
 ## Contact
 For any questions or inquiries, please contact Jonah Chang at jonahpchang@gmail.com.
